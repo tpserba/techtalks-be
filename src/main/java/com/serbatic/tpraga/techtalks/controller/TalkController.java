@@ -1,7 +1,6 @@
 package com.serbatic.tpraga.techtalks.controller;
 
 import com.serbatic.tpraga.techtalks.dto.TalkCardDto;
-import com.serbatic.tpraga.techtalks.dto.TalkDto;
 import com.serbatic.tpraga.techtalks.model.Talk;
 import com.serbatic.tpraga.techtalks.service.TalkService;
 import lombok.RequiredArgsConstructor;
@@ -41,11 +40,20 @@ public class TalkController {
         return talkService.getTalksTitles();
     }
 
-    @PostMapping("/talk-search")
-    public List<Talk> getTalksBySearch(@RequestBody String searchParams) {
+    @PostMapping("/talk-search-title")
+    public List<Talk> getTalksByTitleSearch(@RequestBody String searchParams) {
         if (!searchParams.isEmpty()) {
             System.out.println("inside");
             List<Talk> talks = talkService.getTalksBySearch(searchParams);
+            return talks;
+        }
+        return null;
+    }
+    @PostMapping("/talk-search-author")
+    public List<Talk> getTalksByAuthorSearch(@RequestBody String searchParams) {
+        if (!searchParams.isEmpty()) {
+            System.out.println("inside");
+            List<Talk> talks = aut
             return talks;
         }
         return null;
