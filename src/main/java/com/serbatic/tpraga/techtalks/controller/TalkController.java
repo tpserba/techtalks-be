@@ -31,13 +31,24 @@ public class TalkController {
 
     @PostMapping("/talk-full")
     public Talk getFullTalkById(@RequestBody Long id) {
-       // TalkDto talkDto = talkService.getFullTalkById(Long.parseLong(id));
+        // TalkDto talkDto = talkService.getFullTalkById(Long.parseLong(id));
         Talk talk = talkService.getFullTalkById(id);
         return talk;
     }
+
     @GetMapping("/talks-titles")
     public String[] getTalksTitles() {
         return talkService.getTalksTitles();
+    }
+
+    @PostMapping("/talk-search")
+    public List<Talk> getTalksBySearch(@RequestBody String searchParams) {
+        if (!searchParams.isEmpty()) {
+            System.out.println("inside");
+            List<Talk> talks = talkService.getTalksBySearch(searchParams);
+            return talks;
+        }
+        return null;
     }
 
     @PostMapping("/talk-add")

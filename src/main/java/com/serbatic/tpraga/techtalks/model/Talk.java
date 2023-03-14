@@ -31,6 +31,26 @@ import lombok.*;
                 }
         )
 )
+@NamedNativeQuery(
+        name = "getTalksBySearch",
+        query =
+                "SELECT " +
+                        "t.title " +
+                        "from talks t " +
+                        "where t.resources = ?1"
+        ,
+        resultSetMapping = "talkBySearchMapping"
+)
+@SqlResultSetMapping(
+        name = "talkBySearchMapping",
+        classes = @ConstructorResult(
+                targetClass = Talk.class,
+                columns = {
+                        @ColumnResult(name = "title", type = String.class),
+                }
+        )
+)
+
 public class Talk {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -54,10 +54,6 @@ public class TalkService {
         return talk;
     }
 
-    public Talk getCompleteTalk(Long id) {
-        return iTalkRepository.findById(id).get();
-    }
-
     public String[] getTalksTitles() {
         return iTalkRepository.getTalksTitles();
     }
@@ -73,10 +69,16 @@ public class TalkService {
     public Talk updateTalk(Talk talk) {
         Talk talkUpdated = iTalkRepository.findById(talk.getId()).get();
         // Finds the new author using the id provided by the client request
-       // Author updatedAuthor = iAuthorRepository.findById(talk.getAuthor().getId()).get();
+        // Author updatedAuthor = iAuthorRepository.findById(talk.getAuthor().getId()).get();
         Author updatedAuthor = new Author();
         talkUpdated.setAuthor(updatedAuthor);
         talkUpdated.setTitle(talk.getTitle());
         return iTalkRepository.save(talkUpdated);
+    }
+
+    public List<Talk> getTalksBySearch(String searchParams) {
+        System.out.println("incoming params");
+        System.out.println(searchParams.substring(1, searchParams.length() - 1));
+        return iTalkRepository.findByTitleContaining(searchParams.substring(1, searchParams.length() - 1));
     }
 }
