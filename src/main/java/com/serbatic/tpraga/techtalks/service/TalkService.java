@@ -5,14 +5,12 @@ import com.serbatic.tpraga.techtalks.dto.TalkDto;
 import com.serbatic.tpraga.techtalks.mapper.TalkMapper;
 import com.serbatic.tpraga.techtalks.model.Author;
 import com.serbatic.tpraga.techtalks.model.Talk;
-import com.serbatic.tpraga.techtalks.repository.IAuthorRepository;
 import com.serbatic.tpraga.techtalks.repository.ITalkRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -22,10 +20,9 @@ import java.util.List;
 public class TalkService {
     @Autowired
     private ITalkRepository iTalkRepository;
-    @Autowired
-    private IAuthorRepository iAuthorRepository;
 
-    @GetMapping
+
+
     public List<Talk> getTalks() {
         return iTalkRepository.findAll();
     }
@@ -76,9 +73,11 @@ public class TalkService {
         return iTalkRepository.save(talkUpdated);
     }
 
-    public List<Talk> getTalksBySearch(String searchParams) {
+    public List<Talk> getTalksByTitleSearch(String searchParams) {
         System.out.println("incoming params");
         System.out.println(searchParams.substring(1, searchParams.length() - 1));
-        return iTalkRepository.findByTitleContaining(searchParams.substring(1, searchParams.length() - 1));
+        // Removes quotes so JPA method query works
+        String removedQuotes = searchParams.substring(1, searchParams.length() - 1);
+        return iTalkRepository.findByTitleContaining(removedQuotes);
     }
 }

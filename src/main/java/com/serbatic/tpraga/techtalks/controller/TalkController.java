@@ -1,7 +1,9 @@
 package com.serbatic.tpraga.techtalks.controller;
 
 import com.serbatic.tpraga.techtalks.dto.TalkCardDto;
+import com.serbatic.tpraga.techtalks.model.Author;
 import com.serbatic.tpraga.techtalks.model.Talk;
+import com.serbatic.tpraga.techtalks.service.AuthorService;
 import com.serbatic.tpraga.techtalks.service.TalkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +16,6 @@ import java.util.List;
 public class TalkController {
 
     private final TalkService talkService;
-
 
     @GetMapping("/talks")
     public List<Talk> getTalks() {
@@ -44,20 +45,12 @@ public class TalkController {
     public List<Talk> getTalksByTitleSearch(@RequestBody String searchParams) {
         if (!searchParams.isEmpty()) {
             System.out.println("inside");
-            List<Talk> talks = talkService.getTalksBySearch(searchParams);
+            List<Talk> talks = talkService.getTalksByTitleSearch(searchParams);
             return talks;
         }
         return null;
     }
-    @PostMapping("/talk-search-author")
-    public List<Talk> getTalksByAuthorSearch(@RequestBody String searchParams) {
-        if (!searchParams.isEmpty()) {
-            System.out.println("inside");
-            List<Talk> talks = aut
-            return talks;
-        }
-        return null;
-    }
+
 
     @PostMapping("/talk-add")
     public Talk saveTalk(@RequestBody Talk talk) {
