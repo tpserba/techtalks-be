@@ -5,6 +5,7 @@ import com.serbatic.tpraga.techtalks.dto.TalkDto;
 import com.serbatic.tpraga.techtalks.mapper.TalkMapper;
 import com.serbatic.tpraga.techtalks.model.Author;
 import com.serbatic.tpraga.techtalks.model.Talk;
+import com.serbatic.tpraga.techtalks.repository.IAuthorRepository;
 import com.serbatic.tpraga.techtalks.repository.ITalkRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,8 @@ public class TalkService {
     @Autowired
     private ITalkRepository iTalkRepository;
 
-
+    @Autowired
+    private IAuthorRepository iAuthorRepository;
 
     public List<Talk> getTalks() {
         return iTalkRepository.findAll();
@@ -79,5 +81,11 @@ public class TalkService {
         // Removes quotes so JPA method query works
         String removedQuotes = searchParams.substring(1, searchParams.length() - 1);
         return iTalkRepository.findByTitleContaining(removedQuotes);
+    }
+
+    public List<Talk> getTalksByAuthorId(Long id) {
+        // Removes quotes so JPA method query works
+
+        return iTalkRepository.getTalkByAuthorId(id);
     }
 }

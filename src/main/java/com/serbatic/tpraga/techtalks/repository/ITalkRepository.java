@@ -21,16 +21,20 @@ public interface ITalkRepository extends JpaRepository <Talk, Long>{
 
     // Named query. In class Talk
     @Query(name = "getTalkById" , nativeQuery = true)
-    public TalkCardDto getTalkById(@RequestBody Long id);
+    TalkCardDto getTalkById(@RequestBody Long id);
 
     // Closed interfaced query
     @Query(value = "SELECT " +
             "t.title " +
             "FROM talks t", nativeQuery = true
     )
-    public String[] getTalksTitles();
+    String[] getTalksTitles();
 
 
-    public List<Talk> findByTitleContaining(String title);
+    List<Talk> findByTitleContaining(String title);
 
+
+    @Query(value = "SELECT t.* FROM talks t LEFT JOIN authors a on t.author_id = a.id where a.id= :id",
+            nativeQuery = true)
+    List<Talk> getTalkByAuthorId(Long id);
 }

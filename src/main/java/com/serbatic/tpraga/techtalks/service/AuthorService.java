@@ -18,9 +18,10 @@ public class AuthorService {
     @Autowired
     private IAuthorRepository iAuthorRepository;
 
-    public List<Author> getTalksByAuthorSearch(String searchParams) {
+    public List<Author> getAuthorByName(String searchParams) {
         // Removes quotes so JPA method query works
         String removedQuotes = searchParams.substring(1, searchParams.length() - 1);
         return iAuthorRepository.findByAuthorNameContaining(removedQuotes);
     }
+
 }
