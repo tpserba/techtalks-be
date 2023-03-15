@@ -37,4 +37,10 @@ public interface ITalkRepository extends JpaRepository <Talk, Long>{
     @Query(value = "SELECT t.* FROM talks t LEFT JOIN authors a on t.author_id = a.id where a.id= :id",
             nativeQuery = true)
     List<Talk> getTalkByAuthorId(Long id);
+
+    @Query(value = "SELECT " +
+            "t.id " +
+            "FROM talks t", nativeQuery = true
+    )
+    String[] getTalksIds();
 }

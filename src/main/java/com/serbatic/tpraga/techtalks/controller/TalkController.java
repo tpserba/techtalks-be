@@ -41,6 +41,11 @@ public class TalkController {
         return talkService.getTalksTitles();
     }
 
+
+    @GetMapping("/talks-ids")
+    public String[] getTalksIds() {
+        return talkService.getTalksIds();
+    }
     @PostMapping("/talk-search-title")
     public List<Talk> getTalksByTitleSearch(@RequestBody String searchParams) {
         if (!searchParams.isEmpty()) {

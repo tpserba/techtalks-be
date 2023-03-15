@@ -88,4 +88,8 @@ public class TalkService {
 
         return iTalkRepository.getTalkByAuthorId(id);
     }
+
+    public String[] getTalksIds() {
+        return iTalkRepository.getTalksIds();
+    }
 }
