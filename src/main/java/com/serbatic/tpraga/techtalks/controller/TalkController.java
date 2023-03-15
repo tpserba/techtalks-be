@@ -23,7 +23,7 @@ public class TalkController {
     }
 
 
-    @PostMapping("/talk")
+    @PostMapping("/talk-card")
     public TalkCardDto getTalkById(@RequestBody String id) {
         TalkCardDto talkCardDto = talkService.getTalkById(Long.parseLong(id));
         return talkCardDto;

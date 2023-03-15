@@ -4,6 +4,8 @@ import com.serbatic.tpraga.techtalks.dto.TalkCardDto;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Calendar;
+
 @AllArgsConstructor
 @Getter
 @Setter
@@ -26,8 +28,10 @@ import lombok.*;
                 targetClass = TalkCardDto.class,
                 columns = {
                         @ColumnResult(name = "id", type = Long.class),
+                        @ColumnResult(name = "talk_date", type = Calendar.class),
                         @ColumnResult(name = "title", type = String.class),
                         @ColumnResult(name = "author_name", type = String.class),
+
                 }
         )
 )
@@ -43,7 +47,7 @@ public class Talk {
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
     private String resources;
-
+    private Calendar talkDate;
 
 
     public Talk(String title, Author author) {

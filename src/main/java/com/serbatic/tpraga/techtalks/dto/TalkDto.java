@@ -4,6 +4,7 @@ import com.serbatic.tpraga.techtalks.model.Author;
 import com.serbatic.tpraga.techtalks.model.Resource;
 import lombok.*;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Data
@@ -17,7 +18,7 @@ public class TalkDto {
     private String description;
     private Author author;
     private String[] resource;
-
+    private Calendar talkDate;
     // Even with Lombok, this constructor is necessary for the query
     public TalkDto(Long id, String title, Author author) {
         this.id = id;
