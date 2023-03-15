@@ -72,7 +72,7 @@ public class TalkController {
         return talkService.updateTalk(talk);
     }
 
-    @PostMapping("/talk-by-author")
+    @PostMapping("/talks-by-author")
     public List<Talk> getTalksByAuthorId(@RequestBody Long id) {
         if (id != null) {
             List<Talk> talks = talkService.getTalksByAuthorId(id);
