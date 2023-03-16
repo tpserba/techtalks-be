@@ -50,6 +50,7 @@ public class Talk {
     private Calendar talkDate;
 
     private String vidUrl;
+    private String talkIcon;
 
 
     public Talk(String title, Author author) {
