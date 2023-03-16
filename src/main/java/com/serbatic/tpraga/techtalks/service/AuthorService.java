@@ -24,4 +24,11 @@ public class AuthorService {
         return iAuthorRepository.findByAuthorNameContaining(removedQuotes);
     }
 
+    public List<Author> getAuthors() {
+        return iAuthorRepository.findAll();
+    }
+
+    public Author getAuthorByEmail(String authorEmail) {
+        return iAuthorRepository.findByEmail(authorEmail);
+    }
 }

@@ -43,7 +43,7 @@ public class Talk {
     private Long id;
     private String title;
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
     private String resources;
