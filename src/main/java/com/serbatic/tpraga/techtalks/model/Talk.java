@@ -49,6 +49,8 @@ public class Talk {
     private String resources;
     private Calendar talkDate;
 
+    private String vidUrl;
+
 
     public Talk(String title, Author author) {
         this.title = title;

@@ -19,6 +19,7 @@ public class TalkDto {
     private Author author;
     private String[] resource;
     private Calendar talkDate;
+    private String vidUrl;
     // Even with Lombok, this constructor is necessary for the query
     public TalkDto(Long id, String title, Author author) {
         this.id = id;
