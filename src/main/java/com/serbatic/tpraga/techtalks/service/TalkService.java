@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,8 +63,10 @@ public class TalkService {
         return iTalkRepository.save(talk);
     }
 
-    public void deleteTalk(Long id) {
+    public ResponseEntity deleteTalk(Long id) {
+        System.out.println("talk to delete" + id);
         iTalkRepository.deleteById(id);
+        return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
     public Talk updateTalk(Talk talk) {

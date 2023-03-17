@@ -22,7 +22,6 @@ public class AuthorController {
     @GetMapping("/author-by-email/{authorEmail}")
     public Author getyAuthorByEmail(@PathVariable String authorEmail) {
         if (!authorEmail.isEmpty()) {
-            System.out.println("inside");
             Author author = authorService.getAuthorByEmail(authorEmail);
             return author;
         }

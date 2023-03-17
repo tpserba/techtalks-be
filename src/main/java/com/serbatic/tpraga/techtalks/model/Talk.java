@@ -52,6 +52,8 @@ public class Talk {
     private String vidUrl;
     private String talkIcon;
 
+    private String timezoneInfo;
+
 
     public Talk(String title, Author author) {
         this.title = title;
