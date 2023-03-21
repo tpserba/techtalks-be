@@ -83,9 +83,11 @@ public class TalkController {
     }
 
 
-    @PutMapping("/update-talk")
+    @PutMapping("/talk-update")
     public Talk updateTalk(@RequestBody Talk talk) {
-        return talkService.updateTalk(talk);
+        System.out.println("this is talk id");
+        System.out.println(talk.getId());
+        return talkService.talkUpdate(talk);
     }
 
     @PostMapping("/talks-by-author")

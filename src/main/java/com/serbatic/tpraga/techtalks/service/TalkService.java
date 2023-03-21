@@ -69,14 +69,19 @@ public class TalkService {
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
-    public Talk updateTalk(Talk talk) {
-        Talk talkUpdated = iTalkRepository.findById(talk.getId()).get();
-        // Finds the new author using the id provided by the client request
-        // Author updatedAuthor = iAuthorRepository.findById(talk.getAuthor().getId()).get();
-        Author updatedAuthor = new Author();
-        talkUpdated.setAuthor(updatedAuthor);
-        talkUpdated.setTitle(talk.getTitle());
-        return iTalkRepository.save(talkUpdated);
+    public Talk talkUpdate(Talk talk) {
+        // Finds talk by id
+        Talk talkFromDb = iTalkRepository.findById(talk.getId()).get();
+        // Creates a new talk to store the received values from front
+        talkFromDb.setTitle(talk.getTitle());
+        talkFromDb.setAuthor(talk.getAuthor());
+        talkFromDb.setDescription(talk.getDescription());
+        talkFromDb.setResources(talk.getResources());
+        talkFromDb.setTalkDate(talk.getTalkDate());
+        // icon talkFromDb.setTitle(talk.getTitle());
+        talkFromDb.setVidUrl(talk.getVidUrl());
+
+        return iTalkRepository.save(talkFromDb);
     }
 
     public List<Talk> getTalksByTitleSearch(String searchParams) {
