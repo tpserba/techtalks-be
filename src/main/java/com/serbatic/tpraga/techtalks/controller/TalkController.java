@@ -76,7 +76,6 @@ public class TalkController {
             talk.getTalkDate().add(Calendar.HOUR_OF_DAY, +1);
         }
         System.out.println(talk.getTalkDate().getTimeZone());
-        System.out.println("Let's see the date again");
         System.out.println(talk.getTalkDate().getTime());
         return talkService.saveTalk(talk);
 
@@ -85,8 +84,6 @@ public class TalkController {
 
     @PutMapping("/talk-update")
     public Talk updateTalk(@RequestBody Talk talk) {
-        System.out.println("this is talk id");
-        System.out.println(talk.getId());
         return talkService.talkUpdate(talk);
     }
 
@@ -101,7 +98,6 @@ public class TalkController {
 
     @DeleteMapping("/talk/{id}")
     public ResponseEntity deleteTalk(@PathVariable Long id) {
-        System.out.println("hey");
         if (id != null) {
             ResponseEntity response = talkService.deleteTalk(id);
             return response;

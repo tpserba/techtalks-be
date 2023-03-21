@@ -85,8 +85,6 @@ public class TalkService {
     }
 
     public List<Talk> getTalksByTitleSearch(String searchParams) {
-        System.out.println("incoming params");
-        System.out.println(searchParams.substring(1, searchParams.length() - 1));
         // Removes quotes so JPA method query works
         String removedQuotes = searchParams.substring(1, searchParams.length() - 1);
         return iTalkRepository.findByTitleContaining(removedQuotes);
