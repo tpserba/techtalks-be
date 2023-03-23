@@ -55,7 +55,6 @@ public class TalkController {
     @PostMapping("/talk-search-title")
     public List<Talk> getTalksByTitleSearch(@RequestBody String searchParams) {
         if (!searchParams.isEmpty()) {
-            System.out.println("inside");
             List<Talk> talks = talkService.getTalksByTitleSearch(searchParams);
             return talks;
         }
@@ -65,18 +64,6 @@ public class TalkController {
 
     @PostMapping("/talk-add")
     public Talk saveTalk(@RequestBody Talk talk) {
-        talk.getTalkDate().setTimeZone(TimeZone.getTimeZone("GMT"));
-        // Adds one hour since time comes correct from front but
-        // it's not saved correctly in back
-        talk.getTalkDate().add(Calendar.HOUR_OF_DAY, +1);
-        // Also handles the case when dailight saving is active
-        System.out.println(talk.getTimezoneInfo());
-        if(talk.getTimezoneInfo().equals("0200")){
-            System.out.println("adjusted");
-            talk.getTalkDate().add(Calendar.HOUR_OF_DAY, +1);
-        }
-        System.out.println(talk.getTalkDate().getTimeZone());
-        System.out.println(talk.getTalkDate().getTime());
         return talkService.saveTalk(talk);
 
     }

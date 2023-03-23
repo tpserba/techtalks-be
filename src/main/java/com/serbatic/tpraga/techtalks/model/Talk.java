@@ -52,7 +52,7 @@ public class Talk {
     private String vidUrl;
     private String talkIcon;
 
-    private String timezoneInfo;
+    private int timezoneInfo;
 
 
     public Talk(String title, Author author) {

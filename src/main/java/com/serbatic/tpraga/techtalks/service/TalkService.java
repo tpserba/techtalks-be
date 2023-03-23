@@ -15,7 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
+import java.util.TimeZone;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -60,11 +63,18 @@ public class TalkService {
     }
 
     public Talk saveTalk(Talk talk) {
+        talk.getTalkDate().setTimeZone(TimeZone.getTimeZone("GMT"));
+        // Adds one hour since time comes correct from front but
+        // it's not saved correctly in back
+        talk.getTalkDate().add(Calendar.HOUR_OF_DAY, +1);
+        // Also handles the case when dailight saving is active
+        if(talk.getTimezoneInfo() == -120){
+            talk.getTalkDate().add(Calendar.HOUR_OF_DAY, +1);
+        }
         return iTalkRepository.save(talk);
     }
 
     public ResponseEntity deleteTalk(Long id) {
-        System.out.println("talk to delete" + id);
         iTalkRepository.deleteById(id);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
@@ -80,7 +90,16 @@ public class TalkService {
         talkFromDb.setTalkDate(talk.getTalkDate());
         // icon talkFromDb.setTitle(talk.getTitle());
         talkFromDb.setVidUrl(talk.getVidUrl());
+        talkFromDb.setTimezoneInfo(talk.getTimezoneInfo());
 
+        talkFromDb.getTalkDate().setTimeZone(TimeZone.getTimeZone("GMT"));
+        // Adds one hour since time comes correct from front but
+        // it's not saved correctly in back
+        talkFromDb.getTalkDate().add(Calendar.HOUR_OF_DAY, +1);
+        // Also handles the case when dailight saving is active
+        if(talkFromDb.getTimezoneInfo() == -120){
+            talkFromDb.getTalkDate().add(Calendar.HOUR_OF_DAY, +1);
+        }
         return iTalkRepository.save(talkFromDb);
     }
 

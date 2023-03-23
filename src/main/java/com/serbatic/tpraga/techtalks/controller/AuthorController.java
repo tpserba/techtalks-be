@@ -30,7 +30,6 @@ public class AuthorController {
     @PostMapping("/author-by-name")
     public List<Author> getyAuthorByName(@RequestBody String searchParams) {
         if (!searchParams.isEmpty()) {
-            System.out.println("inside");
             List<Author> authors = authorService.getAuthorByName(searchParams);
             return authors;
         }
