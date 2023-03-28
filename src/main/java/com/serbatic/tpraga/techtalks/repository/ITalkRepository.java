@@ -2,6 +2,8 @@ package com.serbatic.tpraga.techtalks.repository;
 
 import com.serbatic.tpraga.techtalks.dto.TalkCardDto;
 import com.serbatic.tpraga.techtalks.model.Talk;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,11 +16,13 @@ import java.util.List;
 
 @Repository
 public interface ITalkRepository extends JpaRepository <Talk, Long>{
-    @Transactional
-    @Modifying
-    @Query("delete from talks t")
-    int deleteFirstBy();
 
+    @Query(value = "SELECT " +
+            "t.id " +
+            "FROM talks t", nativeQuery = true
+    )
+    String[] getTalksIds();
+    Page<Talk> findAll(Pageable pageable);
     // Named query. In class Talk
     @Query(name = "getTalkById" , nativeQuery = true)
     TalkCardDto getTalkById(@RequestBody Long id);
@@ -38,9 +42,6 @@ public interface ITalkRepository extends JpaRepository <Talk, Long>{
             nativeQuery = true)
     List<Talk> getTalkByAuthorId(Long id);
 
-    @Query(value = "SELECT " +
-            "t.id " +
-            "FROM talks t", nativeQuery = true
-    )
-    String[] getTalksIds();
+
+
 }

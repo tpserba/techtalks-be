@@ -6,6 +6,8 @@ import com.serbatic.tpraga.techtalks.model.Talk;
 import com.serbatic.tpraga.techtalks.service.AuthorService;
 import com.serbatic.tpraga.techtalks.service.TalkService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,13 @@ public class TalkController {
         return talkService.getTalks();
     }
 
+    @GetMapping("/talks-pageable")
+    public Page<Talk> getTalkById(@RequestParam int page,
+                                  @RequestParam int size,
+                                  Pageable pageable) {
+        return talkService.getTalksPageable(page, size, pageable);
+
+    }
 
     @PostMapping("/talk-card")
     public TalkCardDto getTalkById(@RequestBody String id) {

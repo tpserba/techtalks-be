@@ -11,6 +11,10 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,7 +38,10 @@ public class TalkService {
         return iTalkRepository.findAll();
     }
 
-
+    public Page<Talk> getTalksPageable(int page, int size, Pageable pageable) {
+        Pageable paging = PageRequest.of(page, size);
+        return iTalkRepository.findAll(paging);
+    }
     // When changing Author.class to TalkDto(in the query in Author file), the error appears here
     public TalkCardDto getTalkById(Long id) {
         TalkCardDto talkCardDto = iTalkRepository.getTalkById(id);
