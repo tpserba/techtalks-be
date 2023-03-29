@@ -31,8 +31,6 @@ public class TalkService {
 
     private final ITalkRepository iTalkRepository;
 
-    @Autowired
-    private IAuthorRepository iAuthorRepository;
 
     public List<Talk> getTalks() {
         return iTalkRepository.findAll();
@@ -61,7 +59,6 @@ public class TalkService {
         talkDto.setDescription(talk.getDescription());
         // Sets the resources array
         // talkDto.setResource(resourcesArr);
-
         return talk;
     }
 

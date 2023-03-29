@@ -1,21 +1,28 @@
 package com.serbatic.tpraga.techtalks.repository;
 
-import com.serbatic.tpraga.techtalks.dto.TalkCardDto;
 import com.serbatic.tpraga.techtalks.model.Talk;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 
-
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class ITalkRepositoryTest {
-@Autowired
+
     private ITalkRepository iTalkRepository;
+    @BeforeEach
+    void setupService(){
+        iTalkRepository = mock(ITalkRepository.class);
+    }
+
+
     @Test
     void itShouldGetTalksIds() {
     }
@@ -25,18 +32,26 @@ class ITalkRepositoryTest {
     }
 
     @Test
-    void itShouldGetTalkById() {
-        /*
+    void itShouldSaveTalk() {
         // Given
         Talk talk = new Talk();
-        talk.setTitle("Hello");
-        iTalkRepository.save(talk);
-        // When
-        Talk talkReceived = iTalkRepository.findById(163L).get();
+        talk.setTitle("Testing");
+        // when
+        Talk receivedTalk = iTalkRepository.save(talk);
         // Then
-        assertThat(talkReceived.getTitle()).isEqualTo("vavavava");
+        assert(receivedTalk.getTitle()).equals("Testing");
+    }
 
-         */
+    @Test
+    void itShouldGetTalkById() {
+
+        // Given
+        Talk talk = new Talk();
+        talk.setTitle("vavavava");
+        // When
+        when(iTalkRepository.findById(163L).get()).thenReturn(talk);
+        // Then
+        assertThat(talk.getTitle()).isEqualTo("vavavava");
     }
 
     @Test
