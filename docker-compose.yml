@@ -14,6 +14,7 @@ services:
       - db:/var/lib/mysql
       - /var/lib/docker/volumes/a767107ae7eef11beafdcd9b26c42653049c4c95ef5b49c989fb3d77357e142c/_data
   techtalks-be:
+    container_name: "techtalks-be"
     depends_on:
       - mysqldb
     build: ./

@@ -9,6 +9,7 @@ import com.serbatic.tpraga.techtalks.repository.IAuthorRepository;
 import com.serbatic.tpraga.techtalks.repository.ITalkRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,12 +25,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.TimeZone;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class TalkService {
-    @Autowired
-    private ITalkRepository iTalkRepository;
+
+    private final ITalkRepository iTalkRepository;
 
     @Autowired
     private IAuthorRepository iAuthorRepository;
