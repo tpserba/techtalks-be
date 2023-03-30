@@ -5,18 +5,18 @@ import com.serbatic.tpraga.techtalks.model.Talk;
 import com.serbatic.tpraga.techtalks.repository.IAuthorRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class AuthorService {
 
-    @Autowired
-    private IAuthorRepository iAuthorRepository;
+
+    private final IAuthorRepository iAuthorRepository;
 
     public List<Author> getAuthorByName(String searchParams) {
         // Removes quotes so JPA method query works
