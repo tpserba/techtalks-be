@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 //@DataJpaTest
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
+//@RequiredArgsConstructor(onConstructor_ = @Autowired)
 @ExtendWith(MockitoExtension.class)
 class AuthorServiceTest {
     @Mock

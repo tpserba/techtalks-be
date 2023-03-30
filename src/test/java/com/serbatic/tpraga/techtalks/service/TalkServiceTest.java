@@ -68,7 +68,13 @@ class TalkServiceTest {
 
     @Test
     void saveTalk() {
-
+        // Given
+        Talk talk = new Talk();
+        talk.setId(1L);
+        // When
+        when(iTalkRepository.save(any(Talk.class))).then(returnsFirstArg());
+        // Then
+        assertThat(talkService.saveTalk(talk).getId()).isEqualTo(1L);
     }
 
     @Test
