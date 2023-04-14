@@ -11,8 +11,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - db:/var/lib/mysql
-      - /var/lib/docker/volumes/a767107ae7eef11beafdcd9b26c42653049c4c95ef5b49c989fb3d77357e142c/_data
+      - ./mysql-dump:/docker-entrypoint-initdb.d
   techtalks-be:
     container_name: "techtalks-be"
     depends_on:
@@ -34,7 +33,7 @@ services:
     stdin_open: true
     tty: true
   techtalks-fe:
-    image:  techtalks-fe:latest
+    image:  tpragaserbatic/techtalks-fe:latest
     container_name: "techtalks-fe"
     ports:
       - "3001:3000"
