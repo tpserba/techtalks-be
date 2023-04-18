@@ -10,7 +10,7 @@ class TechtalksApplicationTests {
 Calculator calcUnderTest  = new Calculator();
 	@Test
 	void itShouldAddNumbers() {
-		int firstNum = 2;
+		int firstNum = 1;
 		int secondNum = 4;
 		// Given
 		int result = calcUnderTest.add(firstNum, secondNum);

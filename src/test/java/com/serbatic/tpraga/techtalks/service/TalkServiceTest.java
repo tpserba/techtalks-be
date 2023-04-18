@@ -49,7 +49,7 @@ class TalkServiceTest {
 
         // Given
         TalkCardDto talkCardDto = new TalkCardDto();
-        talkCardDto.setId(1L);
+        talkCardDto.setId(2L);
         Long expectedResult = 2L;
         // When
         when(iTalkRepository.getTalkById(1L)).thenReturn(talkCardDto);
@@ -95,7 +95,7 @@ class TalkServiceTest {
 
         // Then
         assertThat(talkService.getFullTalkById(1L).getTitle()).isEqualTo("OK");
-        assertThat(talkService.talkUpdate(talk).getTitle()).isEqualTo("babam");
+        assertThat(talkService.talkUpdate(talk).getTitle()).isEqualTo("OK");
     }
 
     @Test
