@@ -16,7 +16,6 @@ services:
       - mysqldb
 
     restart: on-failure
-
     ports:
       - "8081:8443"
     environment:
