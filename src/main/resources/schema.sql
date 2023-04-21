@@ -17,6 +17,32 @@ USE `techtalksdb`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+--
+-- Table structure for table `talks`
+--
+SET FOREIGN_KEY_CHECKS=0;
+
+DROP TABLE IF EXISTS `talks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `talks` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `author_id` bigint DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `resources` varchar(2000) DEFAULT NULL,
+  `talk_date` datetime DEFAULT NULL,
+  `vid_url` varchar(1000) DEFAULT NULL,
+  `talk_icon` varchar(500) DEFAULT NULL,
+  `timezone_info` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKjlspbfdi7ssqv2rka00ls326p` (`author_id`),
+  CONSTRAINT `FKjlspbfdi7ssqv2rka00ls326p` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
 --
 -- Table structure for table `authors`
 --
@@ -69,29 +95,6 @@ LOCK TABLES `resources` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `talks`
---
-
-DROP TABLE IF EXISTS `talks`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `talks` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `author_id` bigint DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `resources` varchar(2000) DEFAULT NULL,
-  `talk_date` datetime DEFAULT NULL,
-  `vid_url` varchar(1000) DEFAULT NULL,
-  `talk_icon` varchar(500) DEFAULT NULL,
-  `timezone_info` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKjlspbfdi7ssqv2rka00ls326p` (`author_id`),
-  CONSTRAINT `FKjlspbfdi7ssqv2rka00ls326p` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `talks`
 --
 
@@ -109,5 +112,5 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
+SET FOREIGN_KEY_CHECKS=1;
 -- Dump completed on 2023-03-28 15:12:01
