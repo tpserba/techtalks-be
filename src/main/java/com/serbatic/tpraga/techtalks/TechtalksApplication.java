@@ -17,7 +17,7 @@ public class TechtalksApplication {
 		SpringApplication.run(TechtalksApplication.class, args);
 	}
 
-
+/*
 	@Bean
 	public ServletWebServerFactory servletContainer(){
 		// Enable SSL Traffic
@@ -42,7 +42,7 @@ public class TechtalksApplication {
 	 * Without SSL the app used port 8080. With SSl it will use 8443.
 	 * So requests to 8080 must be redirected to 8443
 	 * @return
-	 */
+
 	private Connector httpToHttpsRedirectConnector() {
 		Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
 		connector.setScheme("http");
@@ -51,4 +51,6 @@ public class TechtalksApplication {
 		connector.setRedirectPort(8443);
 		return connector;
 	}
+
+ */
 }
